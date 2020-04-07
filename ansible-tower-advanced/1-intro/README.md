@@ -38,22 +38,27 @@ features of Tower. You’ll learn about:
 
 Definitely, the Asciidoc sources are available here:
 
-**https://github.com/goetzrieger/ansible-labs/blob/master/tower/ansible_tower_advanced.adoc**
+**[https://github.com/goetzrieger/ansible-labs-summit2020/tree/linklight/ansible-tower-advanced](https://github.com/goetzrieger/ansible-labs-summit2020/tree/linklight/ansible-tower-advanced)**
 
 # Your Ansible Tower Lab Environment
 
 In this lab you work in a pre-configured lab environment. You will have
 access to the following hosts:
 
-|                                  |                                         |                                |
-| -------------------------------- | --------------------------------------- | ------------------------------ |
 | Role                             | Hostname External (if applicable)       | Hostname Internal              |
-| Ansible Tower Cluster            | student\<N>.ansible.\<LABID>.rhdemo.io                                        |                                |
-| Ansible Tower Database Host      |                                         | towerdb.example.com            |
-| Managed RHEL7 Host 1             |                                         | support1.&lt;GUID&gt;.internal     |
-| Managed RHEL7 Host 2             |                                         | support1.&lt;GUID&gt;.internal     |
-| Ansible Tower Isolated Node      |                                         | worker1.emea.internal |
-| Managed Remote Host 1            |                                         | isosupport1.internal  |
+| -------------------------------- | --------------------------------------- | ------------------------------ |
+| Ansible Tower Node 1             | student\<N>.ansible.\<LABID>.rhdemo.io  | student\<N>-ansible.\<LABID>.internal |
+| Ansible Tower Node 2             | student\<N>.towernode2.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
+| Ansible Tower Node 3             | student\<N>-towernode3.\<LABID>.rhdemo.io | student\<N>-towernode2.\<LABID>.internal |
+| Ansible Tower Database Host      |                                         | student\<N>-ansible.\<LABID>.interal |
+| Managed RHEL7 Host 1             |                                         | student\<N>-node1.\<LABID>.internal |
+| Managed RHEL7 Host 2             |                                         | student\<N>-node2.\<LABID>.internal |
+| Ansible Tower Isolated Node      |                                         | student\<N>-isonode.\<LABID>.internal |
+| Managed Remote Host 1            |                                         | student\<N>-remote.\<LABUID>.internal |
+
+You can also find all hostnames and URL's on your student lab page.
+
+    http://<LABUID>.rhdemo.io
 
 > **Tip**
 >
