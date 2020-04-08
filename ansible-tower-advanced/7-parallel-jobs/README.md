@@ -42,7 +42,6 @@ via `awx`:
                           --playbook "stig-packages.yml" \
                           --become_enabled 1
 
-
     [root@ansible ~]# awx job_template create --name "Compliance STIG config" \
                           --job_type run \
                           --inventory "Example Inventory" \

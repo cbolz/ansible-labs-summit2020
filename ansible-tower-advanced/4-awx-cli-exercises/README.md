@@ -162,7 +162,6 @@ TODO: cjung - the credentials are not attached! The playbook will fail due to mi
                     --playbook=apache_install.yml \
                     --become_enabled="yes"
 
-
 ## Review the final script and execute it
 
 Verify that your script has all the pieces needed for a properly
@@ -202,7 +201,6 @@ The final script is also shown here:
                     --project=Apache \
                     --playbook=apache_install.yml \
                     --become_enabled="yes"
-
 
 Run the script, and verify that all resources were properly created in
 the web UI.
