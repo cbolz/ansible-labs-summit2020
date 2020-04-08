@@ -326,7 +326,7 @@ files provided in a SCM repository as an inventory source. This way we
 can use the inventory files we keep in Gitea.
 
 In your Tower web UI, open the **RESOURCES→Inventory** view. Then click
-the ![plus(../../images/green_plus.png) button and choose to create a new
+the ![plus](../../images/green_plus.png) button and choose to create a new
 **Inventory**. In the next view:
 
   - **NAME:** Structured Content Inventory

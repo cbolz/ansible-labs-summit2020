@@ -16,6 +16,8 @@ and hope you’ll find it helpful. The first step we do is install the
 > HTTP API, provides consistent output formats with optional
 > machine-parsable formats.
 
+TODO: cjung - there are no instructions on how to use VScode until this point
+
 We’ll install it on your Tower node 1 using the official repository RPM
 packages. Using the VSCode terminal window you opened before install **AWX CLI** as `root`:
 
@@ -63,7 +65,7 @@ Okay, there is an **inventory** resource. Let’s see…
 Well, **create** sounds like what I had in mind. But what arguments do I
 need? Just run:
 
-    [root@ansible ~]# awx -f human inventory create
+    [root@ansible ~]# awx -f human inventory create --help
 
 Bingo! Take note of the **REQUIRED** information at the end.
 

@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "LABID",
         "amiller",
         "browsable",
         "dyngroup",
@@ -10,10 +11,13 @@
         "ftpservers",
         "gitea",
         "hostvars",
+        "isonode",
         "jsmith",
         "rabbitmq",
+        "rhdemo",
         "stig",
         "subkey",
+        "towernode",
         "u'amiller",
         "u'redhat",
         "ui",

@@ -29,6 +29,8 @@ The Playbooks can be found in the Github repository you already setup.
 
 ### First Step: Create three Templates
 
+TODO: cjung - why do we not ask students to put this into the script?
+
 As mentioned the Github repository contains three Playbooks to enforce
 different compliance requirements. First create these three templates
 via `awx`:
@@ -38,7 +40,7 @@ via `awx`:
                           --inventory "Example Inventory" \
                           --project "Apache"  \
                           --playbook "stig-packages.yml" \
-                          --become_enabled 1 
+                          --become_enabled 1
 
 
     [root@ansible ~]# awx job_template create --name "Compliance STIG config" \
@@ -54,7 +56,6 @@ via `awx`:
                           --project "Apache" \
                           --playbook "cis.yml" \
                           --become_enabled 1
-
 
 ## Create Parallel Workflow
 
@@ -74,12 +75,18 @@ the **Templates** view, you might have noticed you can choose between
 
   - Click **SAVE**
 
+TODO: cjung in 3.6 the visualizer starts automatically
+
   - Now the **WORKFLOW VISUALIZER** button becomes active and the
     graphical workflow designer opens.
 
   - Click on the **START** button, a new node opens. To the right you
     can assign an action to the node, you can choose between **JOBS**,
     **PROJECT SYNC** and **INVENTORY SYNC**.
+
+TODO: cjung those job templates do not exist, playbooks can be found here:
+https://github.com/goetzrieger/ansible-labs-playbooks
+Instructions still need to be added!
 
   - In this lab we’ll link multiple jobs to the **START**, so select the
     **Compliance STIG packages** job and click **SELECT**. The node gets
@@ -147,7 +154,7 @@ jobs history. This can be done using **awx-manage** on one of the Tower
 instances. From your control node SSH into one of the Tower hosts and as
 `root` run the command:
 
-    [root@tower1 ~]# awx-manage cleanup_jobs  --days=0
+    [root@ansible ~]# awx-manage cleanup_jobs  --days=0
 
 ### Assign Jobs to Instance Groups
 
@@ -180,6 +187,8 @@ detailed instructions.
 
   - Verify\!
 
+TODO: cjung - fix hostname in following chapter
+
 > **Tip**
 >
 > **Result:** The workflow and the associated jobs will run on
@@ -205,6 +214,8 @@ But what’s going to happen if you disable this instance?
 > group.
 
 What’s going to happen if you enable the instance again?
+
+TODO: cjung - fix hostname in following chapter
 
   - Go to the **Instance Groups** view and enable
     **tower2.ewl05.internal** again.

@@ -51,16 +51,16 @@ Now that we have the empty inventory created, add your two managed hosts
 > <details><summary>Solution below!</summary>
 > <p>
 >
->    [root@ansible ~]# awx -f human host create --name "student1-node1.89cd.ansibleworkshops.com" --inventory "Example Inventory"
+>    [root@ansible ~]# awx -f human host create --name "student\<N>-node1.\<LABID>.internal" --inventory "Example Inventory"
 >
->    [root@ansible ~]# awx -f human host create --name "student1-node2.89cd.ansibleworkshops.com" --inventory "Example Inventory"
+>    [root@ansible ~]# awx -f human host create --name "student\<N>-node2.\<LABID>.internal" --inventory "Example Inventory"
 >
 > </p>
 > </details>
 
 ## Create script to contain this and all following awx commands
 
-As mentioned one of the puproses of **awx** is to use it to
+As mentioned one of the purposes of **awx** is to use it to
 automatically configure more complex Tower setups. In such cases,
 multiple **awx** commands are put together in a script. We follow
 that practice in our example here, and create a shell script on the
@@ -73,9 +73,9 @@ In **code-server** create a new file **File->New File** and save it (**File->Sav
 
     #!/bin/bash
     awx -f human inventory create --name "Example Inventory" --organization "Default"
-    awx -f human host create --name "student1-node1.89cd.ansibleworkshops.com" \
+    awx -f human host create --name "student\<N>-node1.\<LABID>.internal" \
       --inventory "Example Inventory"
-    awx -f human host create --name "student1-node2.89cd.ansibleworkshops.com" \
+    awx -f human host create --name "student\<N>-node2.\<LABID>.internal" \
       --inventory "Example Inventory"
 
 > **Tip**
@@ -91,13 +91,15 @@ Then launch it:
 
 > **Tip**
 >
-> You will see that **awx** is idempotent and recognises the objects as duplicate, so it’s fine that you did
+> You will see that **awx** is idempotent and recognizes the objects as duplicate, so it’s fine that you did
 > run the **awx** commands already.
 
-From now on we’ll explain the needed comands for each of the next steps
+From now on we’ll explain the needed commands for each of the next steps
 and add them to the script step-by-step.
 
 ## Create Machine Credentials
+
+TODO: cjung - the host names are not correct and the keys are not deployed, also until now we worked as student1 and root (but we don't actually need root!?)
 
 > **Tip**
 >
@@ -112,7 +114,7 @@ the script yet:
     awx -f human credential create --name "Example Credentials" \
                       --organization "Default" \
                       --credential_type "Machine" \
-                      --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}
+                      --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}"
 
 Don’t run the shell script yet, first got through the following steps to
 add all commands to it.
@@ -149,13 +151,17 @@ create a **Job Template**, again business as usual for Tower users. Here
 following line to your script **setup-tower.sh**. Don’t run the script
 yet.
 
+TODO: cjung - I don't like that we call everything "example" since Tower also comes with "Demo" content - I think we should have a clearer name like "Lab", or "Ansible Workshop" - something making it more transparent this was used and created for the lab
+
+TODO: cjung - the credentials are not attached! The playbook will fail due to missing credentials
+
     awx -f human job_templates create  \
                     --name="Install Apache" \
                     --inventory="Example Inventory" \
                     --project=Apache \
                     --playbook=apache_install.yml \
                     --become_enabled="yes"
-                   
+
 
 ## Review the final script and execute it
 
@@ -181,7 +187,7 @@ The final script is also shown here:
                       --organization "Default" \
                       --credential_type "Machine" \
                       --inputs="{\"username\":\"ec2-user\",\"ssh_key_data\":\"$(sed -E ':a;N;$!ba;s/\r{0,1}\n/\\n/g' /home/ec2-user/.ssh/aws-private.pem)\n\",\"become_method\":\"sudo\"}"
-                      
+
     awx -f human project create --name="Apache" \
                    --scm_type=git \
                    --scm_url="https://github.com/goetzrieger/ansible-labs-playbooks.git" \
@@ -201,7 +207,7 @@ The final script is also shown here:
 Run the script, and verify that all resources were properly created in
 the web UI.
 
-**Take away:**
+## Take away
 
 It’s easy to script Tower’s configuration using **awx**. This way
 you can bootstrap a new Tower node or script tasks you have to run on a
@@ -211,8 +217,8 @@ lab.
 ## It’s a Cluster After All
 
 We are working in a clustered environment. To verify that the resources
-were created on all instances properly, login to the other Tower
-instances web UIs (the ones you didn’t configured the inventory and
+we're created on all instances properly, login to the other Tower
+instances web UIs (the ones you didn’t configure the inventory and
 credentials on).
 
 Have a look around, everything we automatically configured on one Tower

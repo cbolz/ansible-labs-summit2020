@@ -16,6 +16,8 @@ through it:
 1.  Go to the Tower UI in your browser and make sure you’re logged in as
     admin.
 
+TODO: cjung - fix FQDN
+
 2.  Replace the end of the URL with `/api` e.g.
     `https://tower2-<GUID>.rhpds.opentlc.com/api`
 
@@ -70,6 +72,8 @@ through it:
 > no rights.
 > </p>
 > </details>
+
+TODO: cjung - fix FQDN
 
 Now log in again as admin and go back to the list of users:
 **https://tower2-&lt;GUID&gt;.rhpds.opentlc.com/api/v2/users/**
@@ -149,6 +153,8 @@ requests and what **data** is needed for **POST** actions.
 In this simple case you can simply take the call and run it with e.g.
 **curl**:
 
+TODO: cjung - fix FQDN
+
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             --data '{}' \
             -X GET https://tower1.example.com/api/v2/config/ | jq
@@ -174,6 +180,8 @@ creating a new user, say Albert Miller?
 
 First create the user with awx, then delete it again. Use
 `--verbose` to get the API invocation.
+
+TODO: cjung - fix FQDN
 
     [root@ansible ~]# awx user create --username amiller --email amiller@example.com --password redhat --verbose
 
@@ -204,6 +212,8 @@ and data we have learned from `awx`:
 
 Check if the user exists:
 
+TODO: cjung - fix FQDN
+
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X GET https://tower1.example.com/api/v2/users/?username=amiller
 
@@ -222,6 +232,8 @@ Note the ID of the user and then delete it:
 > **Warning**
 >
 > Replace **&lt;ID&gt;**
+
+TODO: cjung - fix FQDN
 
     [root@ansible ~]# curl -k -H 'Content-Type: application/json' --user admin:r3dh4t1! \
             -X DELETE https://tower1.example.com/api/v2/users/<ID>/ #

@@ -9,7 +9,7 @@ In a single-group Tower cluster where all instances are within the
 `tower` group there is no way to influence what node will run a job, the
 cluster will take care of scheduling Jobs as it sees fit.
 
-To enable more control over what node is running a job, Tower 3.2 saw
+To get more control about which node is running a job, Tower 3.2 saw
 the introduction of the instance groups feature. Instance groups allow
 you to organize your cluster nodes into groups. In turn Jobs can be
 assigned to Instance Groups by configuring the Groups in Organizations,
@@ -40,6 +40,8 @@ some nodes shared over the whole cluster (by putting them into all
 groups) but then have other nodes that are dedicated to one group to
 reserve some capacity.
 
+TODO: cjung - the following three chapters basically have the same message and a redundant
+
 > **Warning**
 >
 > The base `tower` group does house keeping like processing events from
@@ -62,28 +64,28 @@ to run Jobs.
 >
 > Here is a great blog post going into Instance Groups with a lot more
 > depth:
-> <https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes>.
+> [https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes}(https://www.ansible.com/blog/ansible-tower-feature-spotlight-instance-groups-and-isolated-nodes).
 
-## Instance Group Setup
+## Instance Groups Setup
 
 Having the introduction out of the way, let’s get back to our lab and
 give Instance Groups a try.
 
-In a basic cluster setup you would just have the `[tower]` base group.
+In a basic cluster setup you would just have the `[tower]` instance group.
 So let’s go and setup two instance groups:
 
-  - In the **Instance Groups** add a new group by clicking the green
-    **+** icon and then **CREATE INSTANCE GROUP**
+  - In the **Instance Groups** add a new group by clicking the green ![plus](../../images/green_plus.png)
+    icon and then **CREATE INSTANCE GROUP**
 
   - Name the new group **dev**
 
   - **SAVE**
 
   - Click the **INSTANCES** button and add node
-    **tower2.ewl05.internal** again using the **+** icon
+    **student\<N>-towernode2.\<LABID>.internal** again using the **+** icon
 
 Do the same again for the new group **prod** with instance
-**tower3.ewl05.internal**
+**student\<N>-towernode3.\<LABID>.internal**
 
 Going back to the **Instance Groups** view you should now have the
 following setup:
@@ -110,25 +112,25 @@ You can check your instance groups in a number of ways.
 
 ### Via cli
 
-    [root@bastion 0 ~]#awx -k instance_group list -f human 
-    id name  
-    == ===== 
-    1  tower 
-    2  dev   
-    3  prod 
+    [root@bastion 0 ~]# awx instance_group list -f human
+    id name
+    == =====
+    1  tower
+    2  dev
+    3  prod
 
 ### Via API
 
 You can again query the API to get this information. Either use the
 browser to access the URL
-`https://tower.ewl05.sandbox309.opentlc.com/api/v2/instance_groups/` or
+`https://student\<N>-ansible.\<LABID>.rhdemo.io/api/v2/instance_groups/` or
 use curl to access the API from the command line:
 
 > **Tip**
 >
 > The curl command has to be on one line.
 
-    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://tower2.example.com/api/v2/instance_groups/| python -m json.tool
+    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://student\<N>-ansible.\<LABID>.rhdemo.io/api/v2/instance_groups/| python -m json.tool
 
 ### Via the Web UI
 

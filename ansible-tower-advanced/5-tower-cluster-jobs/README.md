@@ -2,7 +2,7 @@
 
 After boot-strapping the Tower configuration from bottom up you are
 ready to start a job in your Tower cluster. In one of the Tower web
-UI’s:
+UIs:
 
   - Open the **Templates** view
 
@@ -12,10 +12,10 @@ UI’s:
 
 At first this is not different from a standard Tower setup. But as this
 is a cluster of active Tower instances every instance could have run the
-job. And the Job output in Tower’s web UI doesn’t tell you where it run,
+job. And the Job output in Tower’s web UI doesn’t tell you where it ran,
 just the instance group.
 
-## So what Instance run the Job?
+## So what Instance ran the Job?
 
 In one of the Tower instances web UI under **ADMINISTRATION** go to the
 **Instance Groups** view. For the `tower` instance group, the **TOTAL
@@ -28,9 +28,9 @@ will get an overview of the **TOTAL JOBS** each Tower instance in this
 group executed. Clicking **TOTAL JOBS** for an instance leads to a
 detailed job list.
 
-## But I just want to know on which Instance my Job Run!
+## But I just want to know on which Instance my Job Ran!
 
-But it would still be nice to see where a job run (not the other way
+But it would still be nice to see where a job ran (not the other way
 round) and to get an idea how jobs are distributed to the available
 instances. For this we can utilize the API:
 
@@ -48,9 +48,9 @@ Bring up the SSH session on your control host and run:
 >
 > Replace &lt;ID&gt; with the job ID you want to query\!
 
-    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://tower2.ewl05.internal/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
+    [root@ansible ~]# curl -s -k -u admin:r3dh4t1! https://student\<N>-ansible.\<LABID>.rhdemo.io/api/v2/jobs/*<ID>*/ | python -m json.tool | grep execution_node
 
-        "execution_node": "tower1.ewl05.internal",
+        "execution_node": "student\<N>-ansible.\<LABID>.rhdemo.io",
 
 > **Tip**
 >
@@ -69,7 +69,7 @@ and friends):
   - Now get the job details via the API interface:
 
       - Open the URL
-        **https://tower.ewl05.sandbox309.opentlc.com/api/v2/jobs/ID/**
+        **https://student\<N>-ansible.\<LABID>.rhdemo.io/api/v2/jobs/ID/**
         where `<ID>` is the number of the job you just looked up in the
         UI.
 
