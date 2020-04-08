@@ -6,7 +6,7 @@ Here are a number of things to consider when planning a clustered Tower
 deployment:
 
   - The PostgreSQL database is a central component of the cluster.
-    Ansible Tower is not taking care of availabilty, redundancy or
+    Ansible Tower is not taking care of availability, redundancy or
     replication of the database, this has to be configured "outside" of
     Tower.
 
