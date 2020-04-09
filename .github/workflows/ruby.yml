@@ -21,6 +21,6 @@ jobs:
       run: |
         gem install bundler
         gem install jekyll
-        jekyll build --config ansible-getting-started/_config.yml
-        jekyll build --config ansible-tower-getting-started/_config.yml
-        jekyll build --config ansible-tower-advanced/_config.yml
+        jekyll build --config ansible-getting-started/_config.yml -d _site/ansible-getting-started/
+        jekyll build --config ansible-tower-getting-started/_config.yml -d _site/ansible-tower-getting-started/
+        jekyll build --config ansible-tower-advanced/_config.yml -d _site/ansible-tower-advanced/
