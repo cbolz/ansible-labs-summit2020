@@ -2,3 +2,4 @@ remote_theme: pmarsceill/just-the-docs
 title: "Ansible Getting Started"
 description: Summit 2020 Lab
 baseurl: "/ansible-getting-started"
+source: "/ansible-getting-started"
